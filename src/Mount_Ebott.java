@@ -22,6 +22,9 @@ public class Mount_Ebott {
 
         System.out.println("\nWhat will name your character: ");
         String name = read.nextLine();
+        Character player = new Character(name);
+        Weapon stick = new Weapon(3, "blunt", "stick");
+        Armor bandage = new Armor();
     }
 
 
@@ -35,5 +38,13 @@ public class Mount_Ebott {
                 System.out.println(i + ". " + menu[i]);
             }
         }
+    }
+
+    public void battle() {
+
+    }
+
+    public void shop() {
+
     }
 }
