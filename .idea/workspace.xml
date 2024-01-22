@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem.">
-      <change afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
+    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Skapade några instanser för att testa något och gjorde Armor till subclass av Item, skapade klass Enemy gjorde det subclass till Character, testade lite med Super och default constructor på character.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Armor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mount_Ebott.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mount_Ebott.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Weapon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +27,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;yacinelabbadi&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="9747a627-7658-4215-adf5-320ea2c8b6c5" />
+        <option name="url" value="https://github.com/yacinelabbadi/Vinterprojekt-Undertale.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -46,6 +64,20 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Vinterprojekt - Undertale" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -58,7 +90,13 @@
       <workItem from="1704031073482" duration="1382000" />
       <workItem from="1704964378744" duration="4678000" />
       <workItem from="1705058312365" duration="6313000" />
-      <workItem from="1705433279962" duration="358000" />
+      <workItem from="1705433279962" duration="3151000" />
+      <workItem from="1705569050324" duration="2669000" />
+      <workItem from="1705663057286" duration="2074000" />
+      <workItem from="1705666131396" duration="1981000" />
+      <workItem from="1705755225552" duration="2270000" />
+      <workItem from="1705856985148" duration="1035000" />
+      <workItem from="1705923021874" duration="12343000" />
     </task>
     <task id="LOCAL-00001" summary="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem.">
       <option name="closed" value="true" />
@@ -68,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705079038634</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Skapade några instanser för att testa något och gjorde Armor till subclass av Item, skapade klass Enemy gjorde det subclass till Character, testade lite med Super och default constructor på character.">
+      <option name="closed" value="true" />
+      <created>1705436017761</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705436017761</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,6 +123,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Börjat med projektet typ, skapade några klasser och gjort attribut för Character" />
     <MESSAGE value="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem." />
-    <option name="LAST_COMMIT_MESSAGE" value="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem." />
+    <MESSAGE value="Skapade några instanser för att testa något och gjorde Armor till subclass av Item, skapade klass Enemy gjorde det subclass till Character, testade lite med Super och default constructor på character." />
+    <option name="LAST_COMMIT_MESSAGE" value="Skapade några instanser för att testa något och gjorde Armor till subclass av Item, skapade klass Enemy gjorde det subclass till Character, testade lite med Super och default constructor på character." />
   </component>
 </project>

@@ -1,12 +1,16 @@
 public class Weapon extends Item{
     // Attributes
     private int damage;
-    private String damageType;
 
     //Constructor
-    public Weapon(int damage, String damageType, String name){
+    public Weapon(int damage, String name, String description){
+        super(name, description);
         this.damage = damage;
-        this.damageType = damageType;
-        this.name = name;
+    }
+
+    // Getters and setters
+
+    public int getDamage() {
+        return damage;
     }
 }
