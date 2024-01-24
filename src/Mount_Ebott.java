@@ -38,13 +38,24 @@ public class Mount_Ebott {
         "\nYou look around but don't see much except golden flowers and a large purple door."+
         "\nWhat do you want to do?");
         String[] choices = new String[] {"View inventory (equipped items won't show up here)", "Check stats and equipment", "Go out the large purple door"};
-        menu(choices);
-        String choice = read.nextLine();
+        boolean loop = true;
+        while (loop) {
+            menu(choices);
+            String choice = read.nextLine();
 
-        switch (choice){
-            case "1": checkInventory(player);
-                break;
-            case "2": checkStatsEquipment(player);
+            switch (choice) {
+                case "1":
+                    checkInventory(player);
+                    break;
+                case "2":
+                    checkStatsEquipment(player);
+                    break;
+                case "3":
+                    break;
+                default:
+                    System.out.println("You need to write a number corresponding to the choices!");
+                    break;
+            }
         }
     }
 
@@ -81,23 +92,60 @@ public class Mount_Ebott {
 
     //Add using items and equipping gear
     public void checkInventory(Character player) {
-        System.out.println();
-        System.out.println("Gold: " + player.getGold());
-        for (int i = 0; i < player.getInventory().size(); i++) {
-            System.out.print(player.getInventory().get(i).getName());
-            if (i==3) {
-                System.out.println();
-            }
-        }
-        System.out.println("Do you want check one of the items? y/n");
-        String choice = read.nextLine();
-        if (choice.equalsIgnoreCase("y")) {
-            System.out.println("Input the name of the item you want to check: ");
-            choice = read.next();
-            for (Item item: player.getInventory()) {
-                if (choice.equalsIgnoreCase(item.getName())) {
-                    System.out.println(item.getDescription());
+        boolean loop = true;
+        boolean itemFound = false;
+        int answer;
+
+        String choice;
+        while(loop) {
+            System.out.println();
+            System.out.println("Gold: " + player.getGold());
+            for (int i = 0; i < player.getInventory().size(); i++) {
+                System.out.print(player.getInventory().get(i).getName());
+                if (i == 3) {
+                    System.out.println();
                 }
+            }
+            System.out.println("Do you want check one of the items? y/n");
+            answer = yesOrNo();
+            if (answer == 1) {
+                System.out.println("Input the name of the item you want to check: ");
+                choice = read.nextLine();
+                for (Item item : player.getInventory()) {
+                    if (choice.equalsIgnoreCase(item.getName())) {
+                        itemFound = true;
+                        System.out.println(item.getDescription());
+                        if (item instanceof Weapon || item instanceof Armor) {
+                            System.out.println("Do you want to equip it? y/n");
+                        } else {
+                            System.out.println("Do you want to use it? y/n");
+                        }
+                        answer = yesOrNo();
+                        if (answer == 1 && item instanceof Weapon || answer ==- 1 && item instanceof Armor) {
+                            player.equipItem(item);
+                        } else if (answer == 1) {
+                            Healing heal = (Healing) item;
+                            heal.healCharacter(player);
+                        }
+                        else {
+                            System.out.println("Do you want to throw it away? y/n");
+                            answer = yesOrNo();
+                            if (answer == 1) {
+                                player.throwAway(item);
+                            }
+                        }
+                        break;
+                    }
+                }
+                if (!itemFound) {
+                    System.out.println("Item was not found in inventory.\nExit inventory? y/n");
+                    answer = yesOrNo();
+                    if (answer == 1) {
+                        loop = false;
+                    }
+                }
+            } else if (answer == 2) {
+                loop = false;
             }
         }
     }
@@ -117,6 +165,22 @@ public class Mount_Ebott {
             System.out.println("Armor: " + player.getMyArmor().getDescription()+
                     "\nWeapon: " + player.getMyWeapon().getDescription());
         }
+    }
+
+    public int yesOrNo() {
+        String choice = read.nextLine();
+        int answer = 0;
+
+        if (choice.equalsIgnoreCase("y")){
+            answer = 1;
+        }
+        else if (choice.equalsIgnoreCase("n")) {
+            answer = 2;
+        }
+        else {
+            System.out.println("You need to answer with 'y' for yes or 'n' for no");
+        }
+        return answer;
     }
 
     public void battle() {

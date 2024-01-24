@@ -6,7 +6,6 @@ public class Armor extends Item{
     public Armor(int protection, String name, String description){
         super(name, description);
         this.protection = protection;
-        this.name = name;
     }
 
     // getters and setters

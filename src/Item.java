@@ -9,6 +9,10 @@ public class Item {
         this.description = description;
     }
 
+    // Methods
+    // Idea, useItem method and instanceof to call respective methods, healCharacter, equipItem etc
+    // to be able to have custom item effects without making new classes, stick insta win dog fight?
+
     // Getters and setters
     public String getName() {
         return name;

@@ -24,6 +24,10 @@ public class Character {
     
     //Methods
 
+    public void throwAway(Item item){
+        this.inventory.remove(item);
+    }
+
     public void equipItem(Item equipment){
         if (equipment instanceof Weapon){
             Weapon myWeapon = (Weapon) equipment;
@@ -33,7 +37,7 @@ public class Character {
             this.myWeapon = myWeapon;
             this.attack += myWeapon.getDamage();
         }
-        if (equipment instanceof Armor){
+        else if (equipment instanceof Armor){
             Armor myArmor = (Armor) equipment;
             if (this.myArmor != null) {
                 unequipArmor();
