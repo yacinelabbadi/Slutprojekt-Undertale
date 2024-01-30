@@ -21,15 +21,62 @@ public class Character {
     public Character(String name) {
         this.name = name;
     }
+    public Character(Character player){
+        this.hp = player.getHp();
+        this.maxHp = player.getMaxHp();
+        this.defense = player.getDefense();
+        this.attack = player.getAttack();
+        copyPlayer(player);
+    }
     
     //Methods
 
+    public void copyPlayer(Character player) {
+        if (!(this instanceof Enemy)) {
+            this.exp = player.getExp();
+            this.lv = player.getLv();
+            this.gold = player.getGold();
+            this.name = player.getName();
+            this.inventory = player.getInventory();
+            this.myArmor = player.getMyArmor();
+            this.myWeapon = player.getMyWeapon();
+        } else {
+            this.name = player.getName() + "???";
+        }
+    }
+
+    public void checkEnemy(Enemy enemy) {
+        System.out.println(enemy.getDescription());
+    }
+
     public void throwAway(Item item){
         this.inventory.remove(item);
+        this.inventory.remove(null);
+    }
+
+    public void useHealing(Healing heal) {
+        this.hp += heal.getHeal();
+        if (this.hp > this.maxHp) {
+            this.hp = this.maxHp;
+        }
+        heal.gotUsed(this);
+    }
+
+    public void gettingHit(int damage){
+        this.hp -= damage - this.defense/5;
+    }
+
+    public boolean isCharacterDead(){
+        boolean dead = false;
+        if (this.hp <= 0) {
+            dead = true;
+        }
+        return dead;
     }
 
     public void equipItem(Item equipment){
         if (equipment instanceof Weapon){
+            setInventory(this.myWeapon);
             Weapon myWeapon = (Weapon) equipment;
             if (this.myWeapon != null) {
                 unequipWeapon();
@@ -38,6 +85,7 @@ public class Character {
             this.attack += myWeapon.getDamage();
         }
         else if (equipment instanceof Armor){
+            setInventory(this.myArmor);
             Armor myArmor = (Armor) equipment;
             if (this.myArmor != null) {
                 unequipArmor();
@@ -45,6 +93,7 @@ public class Character {
             this.myArmor = myArmor;
             this.defense += myArmor.getProtection();
         }
+        this.throwAway(equipment);
     }
     
     public void unequipArmor() {
@@ -53,6 +102,13 @@ public class Character {
 
     public void unequipWeapon() {
         this.attack -= this.myWeapon.getDamage();
+    }
+
+    public void expGain(int exp) {
+        this.exp += exp;
+        if (exp >= this.lv*20+4) {
+            levelUp();
+        }
     }
 
     public void levelUp(){
@@ -64,6 +120,9 @@ public class Character {
     }
 
     // Getters and setters
+    public String getName() {
+        return name;
+    }
     public int getHp() {
         return hp;
     }
@@ -84,20 +143,12 @@ public class Character {
         return attack;
     }
 
-    public int getExp() {
+    public int getExp(){
         return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
     }
 
     public int getLv() {
         return lv;
-    }
-
-    public void setLv(int lv) {
-        this.lv = lv;
     }
 
     public int getGold() {
@@ -105,15 +156,15 @@ public class Character {
     }
 
     public void setGold(int gold) {
-        this.gold = gold;
+        this.gold += gold;
     }
 
     public ArrayList<Item> getInventory() {
         return inventory;
     }
 
-    public void setInventory(ArrayList<Item> inventory) {
-        this.inventory = inventory;
+    public void setInventory(Item item) {
+        this.inventory.add(item);
     }
 
     public Armor getMyArmor() {

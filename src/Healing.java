@@ -11,7 +11,15 @@ public class Healing extends Item{
     }
 
     // Methods
-    public void healCharacter(Character player) {
-        player.setHp(this.heal);
+    public void gotUsed(Character player) {
+        this.uses--;
+        if (this.uses == 0){
+            player.throwAway(this);
+        }
+    }
+
+    // Getters and Setters
+    public int getHeal() {
+        return heal;
     }
 }
