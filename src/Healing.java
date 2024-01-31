@@ -1,3 +1,4 @@
+// A subclass of item, used to let the player heal themselves and consume the item during the process unless it has multiple uses
 public class Healing extends Item{
     // Attributes
     private int heal;
@@ -10,7 +11,16 @@ public class Healing extends Item{
         this.uses = uses;
     }
 
+    // Another constructor using another Healing item, essentially making a copy
+    public Healing(Healing item) {
+        super(item.getName(), item.getDescription());
+        this.heal = item.getHeal();
+        this.uses = item.getUses();
+    }
+
     // Methods
+    // called from the player class whenever the use a healing item from checkInventory, checks uses and makes the player
+    // remove the item from its arraylist if the uses reaches 0
     public void gotUsed(Character player) {
         this.uses--;
         if (this.uses == 0){
@@ -18,8 +28,12 @@ public class Healing extends Item{
         }
     }
 
-    // Getters and Setters
+    // Getters
     public int getHeal() {
         return heal;
+    }
+
+    public int getUses(){
+        return uses;
     }
 }
