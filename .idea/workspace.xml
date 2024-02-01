@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Jag har lagt till flera metoder i main och Character, Jag har inte commitat i ett tag så jag kommer inte ihåg exakt vad som är nytt och gammalt. Det mesta av arbetet har varit i Battle och metoder som kallas därifrån och sedan har jag lagt till några saker för att fixa små problem som t.ex ta bort null från inventory i throwAway.">
+    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Gjorde en del små justeringar som att lägga till instanser av Healing och en ArrayList med healing items så att man kan göra kopior av dem lättare och var som helst i koden, samma sak för Enemy och sedan kommenterade jag all kod på engelska eftersom koden var på engelska också.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Armor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Healing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Healing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mount_Ebott.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mount_Ebott.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Weapon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +101,8 @@
       <workItem from="1706458086212" duration="9466000" />
       <workItem from="1706513806864" duration="14470000" />
       <workItem from="1706620404438" duration="18774000" />
-      <workItem from="1706714801550" duration="12958000" />
+      <workItem from="1706714801550" duration="13102000" />
+      <workItem from="1706778611487" duration="1778000" />
     </task>
     <task id="LOCAL-00001" summary="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem.">
       <option name="closed" value="true" />
@@ -149,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706642244869</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Gjorde en del små justeringar som att lägga till instanser av Healing och en ArrayList med healing items så att man kan göra kopior av dem lättare och var som helst i koden, samma sak för Enemy och sedan kommenterade jag all kod på engelska eftersom koden var på engelska också.">
+      <option name="closed" value="true" />
+      <created>1706729263842</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706729263843</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +165,7 @@
     <MESSAGE value="Hittade instanceof på internet för att pröva en ide eftersom både Armor och Weapon borde vara items vilket minskar mängden metoder och kod.&#10;Gjorde equipItem och levelUp metoder för character och 5 metoder som motsvarar olika platser i Mount_Ebott och checkInventory/checkStatsEquipment. Gjorde nytt attribut för item för att lägga till beskrivining till dem." />
     <MESSAGE value="Jobbade igår och glömde spara, tror jag uppdaterade checkInventory och gjorde yesOrNo metoden eftersom jag ställde många ja eller nej frågor, gjorde Healing klassen som är subklass till item.&#10;Nu har jag gjort en metod throwAway för att ta bort items från karaktärens inventory och uppdaterat checkInventory mer." />
     <MESSAGE value="Jag har lagt till flera metoder i main och Character, Jag har inte commitat i ett tag så jag kommer inte ihåg exakt vad som är nytt och gammalt. Det mesta av arbetet har varit i Battle och metoder som kallas därifrån och sedan har jag lagt till några saker för att fixa små problem som t.ex ta bort null från inventory i throwAway." />
-    <option name="LAST_COMMIT_MESSAGE" value="Jag har lagt till flera metoder i main och Character, Jag har inte commitat i ett tag så jag kommer inte ihåg exakt vad som är nytt och gammalt. Det mesta av arbetet har varit i Battle och metoder som kallas därifrån och sedan har jag lagt till några saker för att fixa små problem som t.ex ta bort null från inventory i throwAway." />
+    <MESSAGE value="Gjorde en del små justeringar som att lägga till instanser av Healing och en ArrayList med healing items så att man kan göra kopior av dem lättare och var som helst i koden, samma sak för Enemy och sedan kommenterade jag all kod på engelska eftersom koden var på engelska också." />
+    <option name="LAST_COMMIT_MESSAGE" value="Gjorde en del små justeringar som att lägga till instanser av Healing och en ArrayList med healing items så att man kan göra kopior av dem lättare och var som helst i koden, samma sak för Enemy och sedan kommenterade jag all kod på engelska eftersom koden var på engelska också." />
   </component>
 </project>

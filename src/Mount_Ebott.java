@@ -85,7 +85,7 @@ public class Mount_Ebott {
 
         System.out.println("You walk out the large purple door and see a dark room with a faint light in the distance."+
                 "\nAs you try to walk your way to the light, something emerges from the darkness!");
-        player = battle(player, enemies.get(1));
+        player = battle(player, enemies.get(0));
     }
 
     /*
@@ -234,15 +234,15 @@ public class Mount_Ebott {
         return answer;
     }
 
-    // A general method for battling an enemy, so the parameter can take in any Enemy from
-    // the arraylist and make an instance of Enemy and then proceed with the battle
-    // as long as the rest of the methods like act for said enemy has been added
-    // It creates a multitude of variables in the start, so they are not continuously generated in the loop and can also be saved for
-    // certain checks which get updated every iteration of the loop like enemyHP and items in case the user uses an item
-    // There is a switch statement that acts as the users turn and calls three other methods and also just reduces the enemies saved health
-    // After the users turn it checks if the enemy is dead and then the enemy attacks the player, and it checks if the player is dead afterward
-    // there is also plans on adding dialogue between the users and enemies turn with a opponent.talk() method
-    // After the battle it returns to ruins but in the future it returns to wherever it is called from
+    /* A general method for battling an enemy, so the parameter can take in any Enemy from
+       the arraylist and make an instance of Enemy and then proceed with the battle
+       as long as the rest of the methods like act for said enemy has been added
+       It creates a multitude of variables in the start, so they are not continuously generated in the loop and can also be saved for
+       certain checks which get updated every iteration of the loop like enemyHP and items in case the user uses an item
+       There is a switch statement that acts as the users turn and calls three other methods and also just reduces the enemies saved health
+       After the users turn it checks if the enemy is dead and then the enemy attacks the player, and it checks if the player is dead afterward
+       there is also plans on adding dialogue between the users and enemies turn with a opponent.talk() method
+       After the battle it returns to ruins but in the future it returns to wherever it is called from */
     public Character battle(Character player, Enemy opponentTemplate) {
         boolean loop;
         Character savePlayer = new Character(player);
