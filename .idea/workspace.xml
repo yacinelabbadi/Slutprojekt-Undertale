@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Hade en liten oopsie, ändrade det snabbt">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vinterprojekt - Undertale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Slutprojekt - Undertale.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mount_Ebott.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mount_Ebott.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,24 +46,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "openjdk-20",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -113,7 +113,8 @@
       <workItem from="1708593021364" duration="279000" />
       <workItem from="1710407896122" duration="1802000" />
       <workItem from="1710501439785" duration="1203000" />
-      <workItem from="1710503445697" duration="29000" />
+      <workItem from="1710503445697" duration="3499000" />
+      <workItem from="1711013646948" duration="2788000" />
     </task>
     <task id="LOCAL-00001" summary="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem.">
       <option name="closed" value="true" />
@@ -171,7 +172,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706781115987</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Hade en liten oopsie, ändrade det snabbt">
+      <option name="closed" value="true" />
+      <created>1710503519163</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1710503519163</updated>
+    </task>
+    <task id="LOCAL-00009" summary="test">
+      <option name="closed" value="true" />
+      <created>1710503597905</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710503597905</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +203,7 @@
     <MESSAGE value="Jag har lagt till flera metoder i main och Character, Jag har inte commitat i ett tag så jag kommer inte ihåg exakt vad som är nytt och gammalt. Det mesta av arbetet har varit i Battle och metoder som kallas därifrån och sedan har jag lagt till några saker för att fixa små problem som t.ex ta bort null från inventory i throwAway." />
     <MESSAGE value="Gjorde en del små justeringar som att lägga till instanser av Healing och en ArrayList med healing items så att man kan göra kopior av dem lättare och var som helst i koden, samma sak för Enemy och sedan kommenterade jag all kod på engelska eftersom koden var på engelska också." />
     <MESSAGE value="Hade en liten oopsie, ändrade det snabbt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hade en liten oopsie, ändrade det snabbt" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>

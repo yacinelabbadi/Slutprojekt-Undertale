@@ -9,6 +9,7 @@ public class Mount_Ebott {
     Random generator = new Random();
     ArrayList<Healing> healItems = new ArrayList<>();
     ArrayList<Enemy> enemies = new ArrayList<>();
+    Character player;
 
     // Constructor, called from main, starts the program
     public Mount_Ebott(){
@@ -39,7 +40,7 @@ public class Mount_Ebott {
 
         System.out.println("\nWhat will name your character: ");
         String name = read.nextLine();
-        Character player = new Character(name);
+        player = new Character(name);
         Weapon stick = new Weapon(2, "stick", "Stick\nAttack: 2\nA stick you randomly found on the ground, could help in sticky situations.");
         Armor bandAid = new Armor(1, "bandage", "Band-aid\nDefense: 1\nA band-aid you had on you before falling down, it has cute puppies on it!");
         Healing candy = new Healing(2, 1, "Candy", "Candy\nHealing: 2\nA piece of cinnamon caramel candy, tasty!");
@@ -53,13 +54,13 @@ public class Mount_Ebott {
         player.equipItem(stick);
         player.equipItem(bandAid);
 
-        ruins(player);
+        ruins();
     }
 
     // Creates an instance of enemy and write another wall of text and calls the menu method and lets the user choose what to do with a
     // switch statement, either calling method checkInventory, checkStatsEquipment or continuing and calls method battle
     // The program is supposed to continue from here if more content gets added in the future
-    public void ruins(Character player){
+    public void ruins(){
         Enemy froggit = new Enemy("Froggit", 4, 4, 20, 10, 6, 2, "Froggit - Atk 4 Def 4"+
                 "\nA weird frog creature... it talks?!");
         enemies.add(froggit);
@@ -76,8 +77,8 @@ public class Mount_Ebott {
             choice = menu(choices);
 
             switch (choice) {
-                case "1" -> checkInventory(player);
-                case "2" -> checkStatsEquipment(player);
+                case "1" -> checkInventory();
+                case "2" -> checkStatsEquipment();
                 case "3" -> loop = false;
                 default -> System.out.println("You need to write a number corresponding to the choices!");
             }
@@ -85,7 +86,7 @@ public class Mount_Ebott {
 
         System.out.println("You walk out the large purple door and see a dark room with a faint light in the distance."+
                 "\nAs you try to walk your way to the light, something emerges from the darkness!");
-        player = battle(player, enemies.get(0));
+        battle(enemies.get(0));
     }
 
     /*
@@ -131,7 +132,7 @@ public class Mount_Ebott {
 
     // This method loops while letting the user see the arraylist of items the Character object has stored and choose an item to either
     // equip or use depending on if the item is an instance of Weapon/Armor or Healing or lets the user throw away the item
-    public void checkInventory(Character player) {
+    public void checkInventory() {
         boolean loop = true;
         boolean itemFound = false;
         int answer;
@@ -197,7 +198,7 @@ public class Mount_Ebott {
     }
 
     // Prints out a majority of the characters saved attributes to show the user the characters "stats" and equipment
-    public void checkStatsEquipment(Character player){
+    public void checkStatsEquipment(){
         System.out.println();
         System.out.println("Name: " + player.getName() +
                 "\n\nHP: " + player.getHp() + "/" + player.getMaxHp()+
@@ -243,7 +244,7 @@ public class Mount_Ebott {
        After the users turn it checks if the enemy is dead and then the enemy attacks the player, and it checks if the player is dead afterward
        there is also plans on adding dialogue between the users and enemies turn with a opponent.talk() method
        After the battle it returns to ruins but in the future it returns to wherever it is called from */
-    public Character battle(Character player, Enemy opponentTemplate) {
+    public void battle(Enemy opponentTemplate) {
         boolean loop;
         Character savePlayer = new Character(player);
         Enemy opponent = new Enemy(opponentTemplate);
@@ -255,7 +256,7 @@ public class Mount_Ebott {
         Armor currentArmor;
         double enemyHPProcent;
         double enemyHP;
-        double enemyMaxHP;
+        double enemyMaxHP = opponent.getMaxHp();
 
         label:
         while (true) {
@@ -263,7 +264,7 @@ public class Mount_Ebott {
             currentWeapon = player.getMyWeapon();
             currentArmor = player.getMyArmor();
             enemyHP = opponent.getHp();
-            enemyMaxHP = opponent.getMaxHp();
+
 
             enemyHPProcent = enemyHP/enemyMaxHP*100;
 
@@ -286,16 +287,16 @@ public class Mount_Ebott {
                         loop = false;
                         break;
                     case "2":
-                        act(player, opponent);
+                        act(opponent);
                         loop = false;
                         break;
-                    case "3": checkInventory(player);
+                    case "3": checkInventory();
                         if (player.getInventory().size() < items || !currentWeapon.equals(player.getMyWeapon()) || !currentArmor.equals(player.getMyArmor())) {
                             loop = false;
                         }
                         break;
                     case "4":
-                        if (mercy(player, opponent)) {
+                        if (mercy(opponent)) {
                             break label;
                         }
                         loop = false;
@@ -306,7 +307,7 @@ public class Mount_Ebott {
                 }
             }
             if (opponent.isCharacterDead()) {
-                wonBattle(player, opponent);
+                wonBattle(opponent);
                 break;
             }
 
@@ -314,17 +315,15 @@ public class Mount_Ebott {
 
             opponent.attacks(player);
             if (player.isCharacterDead()) {
-                player = gameOver(player, opponent, savePlayer);
+                gameOver(opponent, savePlayer);
                 opponent = new Enemy(opponentTemplate);
             }
         }
-
-        return player;
     }
 
     // this method will call the specific method for specific enemies as you will be able to interact with each type of enemies uniquely
     // Currently only the froggit method is called here and therefore the player parameter isn't being used, in the future it could
-    public void act(Character player, Enemy opponent) {
+    public void act(Enemy opponent) {
 
         System.out.println("What do you want to do?");
         if (opponent.getName().equals("Froggit")) {
@@ -335,7 +334,7 @@ public class Mount_Ebott {
     // One of the options during the players turn, lets them exit the battle either by chance based fleeing or when the enemy is sparable
     // which is when the enemy is either at low enough health or after the unique ACTions have been chosen correctly
     // If the player runs away they don't get any rewards but if they spare then they get 60% of the gold from the battle by calling wonBattle method (100% is from killing)
-    public boolean mercy(Character player, Enemy opponent) {
+    public boolean mercy(Enemy opponent) {
         System.out.println("What do you want do?");
         System.out.println("1. Spare " + opponent.getVisibleName() +"\n2. Flee from the battle");
         String choice = read.nextLine();
@@ -344,7 +343,7 @@ public class Mount_Ebott {
         switch (choice){
             case "1":
                 if (opponent.getSparable()) {
-                    wonBattle(player, opponent);
+                    wonBattle(opponent);
                     over = true;
                 } else {
                 System.out.println(opponent.getName() + " isn't spareable right now!");
@@ -364,12 +363,15 @@ public class Mount_Ebott {
 
     // When the enemy in battle() dies or is spared in mercy() this is called and gives exp (execution points) and full amount
     // of gold when killing, or 60% of gold when sparing (they also need money you know?)
-    public void wonBattle(Character player, Enemy opponent) {
+    public void wonBattle(Enemy opponent) {
+        System.out.println("You won!");
         if (opponent.isCharacterDead()) {
             player.expGain(opponent.getExpGain());
             player.setGold(opponent.getGoldGain());
+            System.out.println("You gained "+opponent.getExpGain()+" EXP and "+opponent.getGoldGain()+" gold.");
         } else {
             player.setGold((opponent.getGold()/10)*6);
+            System.out.println("You gained "+opponent.getGoldGain()+" gold.");
         }
     }
 
@@ -378,7 +380,7 @@ public class Mount_Ebott {
     // make a new player and overwrite the current one
     // this was because I was having problems with player not saving any changes I was making which according to google was
     // because player was a local reference? either way it works but might have been easier if player was a global attribute instead
-    public Character gameOver(Character player, Enemy opponent, Character savePlayer){
+    public void gameOver(Enemy opponent, Character savePlayer){
         System.out.println("""
                 ⠀⢀⣴⣾⣿⣿⣿⣷⣦⡄⠀⣴⣾⣿⣿⣿⣿⣶⣄⠀⠀
                 ⣰⣿⣿⣿⣿⣿⣿⣿⠋⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
@@ -408,7 +410,6 @@ public class Mount_Ebott {
                 System.out.println("You must answer with by putting in 1 or 2 for the first or second option!");
             }
         }
-        return player;
     }
 
     // This method lets you choose an action when choosing act against the enemy froggit which either lets you see froggits stats and
