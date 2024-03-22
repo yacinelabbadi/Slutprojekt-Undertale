@@ -8,6 +8,9 @@ public class Mount_Ebott {
     Scanner read = new Scanner(System.in);
     Random generator = new Random();
     ArrayList<Healing> healItems = new ArrayList<>();
+    ArrayList<Weapon> weapons = new ArrayList<>();
+    ArrayList<Armor> armors = new ArrayList<>();
+    ArrayList<Item> itemsList = new ArrayList<>();
     ArrayList<Enemy> enemies = new ArrayList<>();
     Character player;
     Character savePlayer;
@@ -46,14 +49,13 @@ public class Mount_Ebott {
         Armor bandAid = new Armor(1, "bandage", "Band-aid\nDefense: 1\nA band-aid you had on you before falling down, it has cute puppies on it!");
         Healing candy = new Healing(2, 1, "Candy", "Candy\nHealing: 2\nA piece of cinnamon caramel candy, tasty!");
         healItems.add(candy);
+        weapons.add(stick);
+        armors.add(bandAid);
 
-        Healing candy1 = new Healing(candy);
-        Healing candy2 = new Healing(candy);
-
-        player.setInventory(candy1);
-        player.setInventory(candy2);
-        player.equipItem(stick);
-        player.equipItem(bandAid);
+        player.setInventory(new Healing(healItems.get(0)));
+        player.setInventory(new Healing(healItems.get(0)));
+        player.equipItem(new Weapon(weapons.get(0)));
+        player.equipItem(new Armor(armors.get(0)));
 
         ruins();
     }
@@ -319,7 +321,7 @@ public class Mount_Ebott {
 
             opponent.attacks(player);
             if (player.isCharacterDead()) {
-                gameOver(opponent, savePlayer);
+                gameOver(savePlayer);
                 opponent = new Enemy(opponentTemplate);
             }
         }
@@ -381,10 +383,8 @@ public class Mount_Ebott {
 
     // Called when player reaches zero health in battle() and exits the program if you give up or continues the battle from the beginning
     // if you choose to continue which is achieved by making a new instance of the enemy after this method and using a saved copy of player to
-    // make a new player and overwrite the current one
-    // this was because I was having problems with player not saving any changes I was making which according to google was
-    // because player was a local reference? either way it works but might have been easier if player was a global attribute instead
-    public void gameOver(Enemy opponent, Character savePlayer){
+    // make a new player and overwrite the current one, so that all data will be the same as when player entered battle
+    public void gameOver(Character savePlayer){
         System.out.println("""
                 ⠀⢀⣴⣾⣿⣿⣿⣷⣦⡄⠀⣴⣾⣿⣿⣿⣿⣶⣄⠀⠀
                 ⣰⣿⣿⣿⣿⣿⣿⣿⠋⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
@@ -445,7 +445,7 @@ public class Mount_Ebott {
     }
 
     /*
-    Will be added in the future to let the user spend gold earned from battles to add items to the payers inventory arraylist
+    Will be added in the future to let the user spend gold earned from battles to add items to the players inventory arraylist
     public void shop() {
 
     }
