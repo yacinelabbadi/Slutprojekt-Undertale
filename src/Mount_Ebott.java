@@ -10,6 +10,7 @@ public class Mount_Ebott {
     ArrayList<Healing> healItems = new ArrayList<>();
     ArrayList<Enemy> enemies = new ArrayList<>();
     Character player;
+    Character savePlayer;
 
     // Constructor, called from main, starts the program
     public Mount_Ebott(){
@@ -77,7 +78,7 @@ public class Mount_Ebott {
             choice = menu(choices);
 
             switch (choice) {
-                case "1" -> checkInventory();
+                case "1" -> checkInventory(false);
                 case "2" -> checkStatsEquipment();
                 case "3" -> loop = false;
                 default -> System.out.println("You need to write a number corresponding to the choices!");
@@ -132,7 +133,7 @@ public class Mount_Ebott {
 
     // This method loops while letting the user see the arraylist of items the Character object has stored and choose an item to either
     // equip or use depending on if the item is an instance of Weapon/Armor or Healing or lets the user throw away the item
-    public void checkInventory() {
+    public void checkInventory(boolean inBattle) {
         boolean loop = true;
         boolean itemFound = false;
         int answer;
@@ -180,6 +181,9 @@ public class Mount_Ebott {
                             if (answer == 1) {
                                 player.throwAway(item);
                             }
+                        }
+                        if (inBattle) {
+                            loop = false;
                         }
                         break;
                     }
@@ -246,7 +250,7 @@ public class Mount_Ebott {
        After the battle it returns to ruins but in the future it returns to wherever it is called from */
     public void battle(Enemy opponentTemplate) {
         boolean loop;
-        Character savePlayer = new Character(player);
+        savePlayer = new Character(player);
         Enemy opponent = new Enemy(opponentTemplate);
         String[] choices = new String[]{"Fight", "Act", "View inventory", "Mercy"};
         String choice;
@@ -281,8 +285,8 @@ public class Mount_Ebott {
                         if (missChance==1){
                             System.out.println("You missed!");
                         } else {
-                            opponent.gettingHit(player.getAttack());
                             System.out.println("You attacked " + opponent.getVisibleName());
+                            opponent.gettingHit(player.getAttack());
                         }
                         loop = false;
                         break;
@@ -290,7 +294,7 @@ public class Mount_Ebott {
                         act(opponent);
                         loop = false;
                         break;
-                    case "3": checkInventory();
+                    case "3": checkInventory(true);
                         if (player.getInventory().size() < items || !currentWeapon.equals(player.getMyWeapon()) || !currentArmor.equals(player.getMyArmor())) {
                             loop = false;
                         }

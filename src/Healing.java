@@ -12,10 +12,10 @@ public class Healing extends Item{
     }
 
     // Another constructor using another Healing item, essentially making a copy
-    public Healing(Healing item) {
-        super(item.getName(), item.getDescription());
-        this.heal = item.getHeal();
-        this.uses = item.getUses();
+    public Healing(Healing healing) {
+        super(healing.getName(), healing.getDescription());
+        this.heal = healing.getHeal();
+        this.uses = healing.getUses();
     }
 
     // Methods

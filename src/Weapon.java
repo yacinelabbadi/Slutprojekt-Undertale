@@ -10,6 +10,11 @@ public class Weapon extends Item{
         this.damage = damage;
     }
 
+    public Weapon(Weapon weapon) {
+        super(weapon.getName(), weapon.getDescription());
+        this.damage = weapon.getDamage();
+    }
+
     // Getters and setters
 
     public int getDamage() {

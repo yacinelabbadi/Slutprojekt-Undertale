@@ -43,12 +43,28 @@ public class Character {
             this.lv = player.getLv();
             this.gold = player.getGold();
             this.name = player.getName();
-            this.inventory = player.getInventory();
+            this.inventory = copyInventory(player.getInventory());
             this.myArmor = player.getMyArmor();
             this.myWeapon = player.getMyWeapon();
         } else {
             this.name = player.getName() + "???";
         }
+    }
+
+    public ArrayList<Item> copyInventory(ArrayList<Item> originalInventory) { //Todo Can this be improved?
+        ArrayList<Item> inventoryCopy = new ArrayList<>();
+        for (Item item: originalInventory) {
+            if (item instanceof Healing) {
+                inventoryCopy.add(new Healing((Healing) item));
+            } else if (item instanceof Weapon) {
+                inventoryCopy.add(new Weapon((Weapon) item));
+            } else if (item instanceof Armor) {
+                inventoryCopy.add(new Armor((Armor) item));
+            } else {
+                inventoryCopy.add(new Item(item));
+            }
+        }
+        return inventoryCopy;
     }
 
     public void throwAway(Item item){
