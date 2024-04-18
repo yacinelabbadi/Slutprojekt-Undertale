@@ -56,6 +56,7 @@ public class Mount_Ebott {
         player.setInventory(new Healing(healItems.get(0)));
         player.equipItem(new Weapon(weapons.get(0)));
         player.equipItem(new Armor(armors.get(0)));
+        player.setInventory(new Armor(10,"testing","this is a test"));
 
         ruins();
     }
@@ -142,6 +143,8 @@ public class Mount_Ebott {
 
         String choice;
         while(loop) {
+
+            System.out.println(player.getMyArmor().getName());
             System.out.println();
             System.out.println("Gold: " + player.getGold());
             for (int i = 0; i < player.getInventory().size(); i++) {
@@ -169,7 +172,7 @@ public class Mount_Ebott {
                             System.out.println("Do you want to use it? y/n");
                         }
                         answer = yesOrNo();
-                        if (answer == 1 && item instanceof Weapon || answer ==- 1 && item instanceof Armor) {
+                        if (answer == 1 && item instanceof Weapon || answer == 1 && item instanceof Armor) {
                             player.equipItem(item);
                             break;
                         } else if (answer == 1 && item instanceof Healing) {
@@ -200,6 +203,7 @@ public class Mount_Ebott {
             } else if (answer == 2) {
                 loop = false;
             }
+            System.out.println(player.getMyArmor().getName());
         }
     }
 
@@ -443,6 +447,8 @@ public class Mount_Ebott {
             }
         }
     }
+
+    //TODO: add a mimic battle, copies players stats and name with three question marks
 
     /*
     Will be added in the future to let the user spend gold earned from battles to add items to the players inventory arraylist

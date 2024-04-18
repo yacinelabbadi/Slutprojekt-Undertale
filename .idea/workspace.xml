@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Fixade några problem som att savePlayers inventory ändras när player använder items, genom att kopiera alla items för sig när man kopierar player så att det är ny referens till nya objekt.">
+    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Gjorde några snabba justeringar som att göra arraylists för resten av alla typer av items för att ha &quot;templates&quot; för alla eftersom man ska kunna få mer i &quot;shop&quot; metoden senare. En Idé som jag också kanske kollar på senare är om enemies ska ha chanser att droppa/ge items när man vinner.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mount_Ebott.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mount_Ebott.java" afterDir="false" />
     </list>
@@ -116,7 +116,10 @@
       <workItem from="1710503445697" duration="3499000" />
       <workItem from="1711013646948" duration="3451000" />
       <workItem from="1711106391213" duration="5914000" />
-      <workItem from="1711129753834" duration="1397000" />
+      <workItem from="1711129753834" duration="1600000" />
+      <workItem from="1712822920588" duration="3139000" />
+      <workItem from="1712917679696" duration="2791000" />
+      <workItem from="1713428277222" duration="3003000" />
     </task>
     <task id="LOCAL-00001" summary="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem.">
       <option name="closed" value="true" />
@@ -206,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711113757500</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Gjorde några snabba justeringar som att göra arraylists för resten av alla typer av items för att ha &quot;templates&quot; för alla eftersom man ska kunna få mer i &quot;shop&quot; metoden senare. En Idé som jag också kanske kollar på senare är om enemies ska ha chanser att droppa/ge items när man vinner.">
+      <option name="closed" value="true" />
+      <created>1711131360142</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711131360142</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +235,7 @@
     <MESSAGE value="test" />
     <MESSAGE value="Tog bort player som parameter på flera metoder." />
     <MESSAGE value="Fixade några problem som att savePlayers inventory ändras när player använder items, genom att kopiera alla items för sig när man kopierar player så att det är ny referens till nya objekt." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixade några problem som att savePlayers inventory ändras när player använder items, genom att kopiera alla items för sig när man kopierar player så att det är ny referens till nya objekt." />
+    <MESSAGE value="Gjorde några snabba justeringar som att göra arraylists för resten av alla typer av items för att ha &quot;templates&quot; för alla eftersom man ska kunna få mer i &quot;shop&quot; metoden senare. En Idé som jag också kanske kollar på senare är om enemies ska ha chanser att droppa/ge items när man vinner." />
+    <option name="LAST_COMMIT_MESSAGE" value="Gjorde några snabba justeringar som att göra arraylists för resten av alla typer av items för att ha &quot;templates&quot; för alla eftersom man ska kunna få mer i &quot;shop&quot; metoden senare. En Idé som jag också kanske kollar på senare är om enemies ska ha chanser att droppa/ge items när man vinner." />
   </component>
 </project>
