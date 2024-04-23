@@ -11,6 +11,7 @@ public class Enemy extends Character {
     private String visibleName = "the monster";
 
     //Constructor
+    // potential "spawns" subclass of enemy
     public Enemy(String name, int attack, int defense, int maxHp, int expGain, int goldGain, int willingness, String description) {
         this.name = name;
         this.attack = attack;

@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Gjorde några snabba justeringar som att göra arraylists för resten av alla typer av items för att ha &quot;templates&quot; för alla eftersom man ska kunna få mer i &quot;shop&quot; metoden senare. En Idé som jag också kanske kollar på senare är om enemies ska ha chanser att droppa/ge items när man vinner.">
+    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Jag håller på med att göra en player klass som ärver från Character så att Enemy inte innehåller onödig information som t.ex metoder som bara player kommer att använda, men de båda kommer ärva generiska attributes and metoder som de båda kommer at använda. Det är helt huller om buller eftersom jag inte har tid att fixa allt nu, så kolla på föregående commit.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Healing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Healing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mount_Ebott.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mount_Ebott.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +123,8 @@
       <workItem from="1711129753834" duration="1600000" />
       <workItem from="1712822920588" duration="3139000" />
       <workItem from="1712917679696" duration="2791000" />
-      <workItem from="1713428277222" duration="3003000" />
+      <workItem from="1713428277222" duration="4095000" />
+      <workItem from="1713868431782" duration="10765000" />
     </task>
     <task id="LOCAL-00001" summary="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem.">
       <option name="closed" value="true" />
@@ -217,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711131360142</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Jag håller på med att göra en player klass som ärver från Character så att Enemy inte innehåller onödig information som t.ex metoder som bara player kommer att använda, men de båda kommer ärva generiska attributes and metoder som de båda kommer at använda. Det är helt huller om buller eftersom jag inte har tid att fixa allt nu, så kolla på föregående commit.">
+      <option name="closed" value="true" />
+      <created>1713432406556</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1713432406556</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +249,7 @@
     <MESSAGE value="Tog bort player som parameter på flera metoder." />
     <MESSAGE value="Fixade några problem som att savePlayers inventory ändras när player använder items, genom att kopiera alla items för sig när man kopierar player så att det är ny referens till nya objekt." />
     <MESSAGE value="Gjorde några snabba justeringar som att göra arraylists för resten av alla typer av items för att ha &quot;templates&quot; för alla eftersom man ska kunna få mer i &quot;shop&quot; metoden senare. En Idé som jag också kanske kollar på senare är om enemies ska ha chanser att droppa/ge items när man vinner." />
-    <option name="LAST_COMMIT_MESSAGE" value="Gjorde några snabba justeringar som att göra arraylists för resten av alla typer av items för att ha &quot;templates&quot; för alla eftersom man ska kunna få mer i &quot;shop&quot; metoden senare. En Idé som jag också kanske kollar på senare är om enemies ska ha chanser att droppa/ge items när man vinner." />
+    <MESSAGE value="Jag håller på med att göra en player klass som ärver från Character så att Enemy inte innehåller onödig information som t.ex metoder som bara player kommer att använda, men de båda kommer ärva generiska attributes and metoder som de båda kommer at använda. Det är helt huller om buller eftersom jag inte har tid att fixa allt nu, så kolla på föregående commit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Jag håller på med att göra en player klass som ärver från Character så att Enemy inte innehåller onödig information som t.ex metoder som bara player kommer att använda, men de båda kommer ärva generiska attributes and metoder som de båda kommer at använda. Det är helt huller om buller eftersom jag inte har tid att fixa allt nu, så kolla på föregående commit." />
   </component>
 </project>

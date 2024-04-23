@@ -21,7 +21,7 @@ public class Healing extends Item{
     // Methods
     // called from the player class whenever the use a healing item from checkInventory, checks uses and makes the player
     // remove the item from its arraylist if the uses reaches 0
-    public void gotUsed(Character player) {
+    public void gotUsed(Player player) {
         this.uses--;
         if (this.uses == 0){
             player.throwAway(this);

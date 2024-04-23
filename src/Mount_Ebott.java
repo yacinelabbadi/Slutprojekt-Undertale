@@ -12,8 +12,8 @@ public class Mount_Ebott {
     ArrayList<Armor> armors = new ArrayList<>();
     ArrayList<Item> itemsList = new ArrayList<>();
     ArrayList<Enemy> enemies = new ArrayList<>();
-    Character player;
-    Character savePlayer;
+    Player player;
+    Player savePlayer;
 
     // Constructor, called from main, starts the program
     public Mount_Ebott(){
@@ -44,18 +44,16 @@ public class Mount_Ebott {
 
         System.out.println("\nWhat will name your character: ");
         String name = read.nextLine();
-        player = new Character(name);
-        Weapon stick = new Weapon(2, "stick", "Stick\nAttack: 2\nA stick you randomly found on the ground, could help in sticky situations.");
-        Armor bandAid = new Armor(1, "bandage", "Band-aid\nDefense: 1\nA band-aid you had on you before falling down, it has cute puppies on it!");
-        Healing candy = new Healing(2, 1, "Candy", "Candy\nHealing: 2\nA piece of cinnamon caramel candy, tasty!");
-        healItems.add(candy);
-        weapons.add(stick);
-        armors.add(bandAid);
+        healItems.add(new Healing(2, 1, "Candy", "Candy\nHealing: 2\nA piece of cinnamon caramel candy, tasty!"));
+        weapons.add(new Weapon(2, "stick", "Stick\nAttack: 2\nA stick you randomly found on the ground, could help in sticky situations."));
+        armors.add(new Armor(1, "bandage", "Band-aid\nDefense: 1\nA band-aid you had on you before falling down, it has cute puppies on it!"));
+
+        player = new Player(name, new Armor(armors.get(0)), new Weapon(weapons.get(0)));
 
         player.setInventory(new Healing(healItems.get(0)));
         player.setInventory(new Healing(healItems.get(0)));
-        player.equipItem(new Weapon(weapons.get(0)));
-        player.equipItem(new Armor(armors.get(0)));
+        //player.equipItem(new Weapon(weapons.get(0)));
+        //player.equipItem(new Armor(armors.get(0)));
         player.setInventory(new Armor(10,"testing","this is a test"));
 
         ruins();
@@ -143,8 +141,6 @@ public class Mount_Ebott {
 
         String choice;
         while(loop) {
-
-            System.out.println(player.getMyArmor().getName());
             System.out.println();
             System.out.println("Gold: " + player.getGold());
             for (int i = 0; i < player.getInventory().size(); i++) {
@@ -172,23 +168,27 @@ public class Mount_Ebott {
                             System.out.println("Do you want to use it? y/n");
                         }
                         answer = yesOrNo();
-                        if (answer == 1 && item instanceof Weapon || answer == 1 && item instanceof Armor) {
-                            player.equipItem(item);
-                            break;
-                        } else if (answer == 1 && item instanceof Healing) {
-                            Healing heal = (Healing) item;
-                            player.useHealing(heal);
-                            break;
+                        if (answer == 1) {
+                            if (inBattle) {
+                                loop = false;
+                            }
+
+                            if (item instanceof Weapon || item instanceof Armor) {
+                                player.equipItem(item);
+                                break;
+                            } else if (item instanceof Healing) {
+                                Healing heal = (Healing) item;
+                                player.useHealing(heal);
+                                break;
+                            }
                         }
+
                         else {
                             System.out.println("Do you want to throw it away? y/n");
                             answer = yesOrNo();
                             if (answer == 1) {
                                 player.throwAway(item);
                             }
-                        }
-                        if (inBattle) {
-                            loop = false;
                         }
                         break;
                     }
@@ -203,7 +203,6 @@ public class Mount_Ebott {
             } else if (answer == 2) {
                 loop = false;
             }
-            System.out.println(player.getMyArmor().getName());
         }
     }
 
@@ -256,7 +255,7 @@ public class Mount_Ebott {
        After the battle it returns to ruins but in the future it returns to wherever it is called from */
     public void battle(Enemy opponentTemplate) {
         boolean loop;
-        savePlayer = new Character(player);
+        savePlayer = new Player(player);
         Enemy opponent = new Enemy(opponentTemplate);
         String[] choices = new String[]{"Fight", "Act", "View inventory", "Mercy"};
         String choice;
@@ -300,8 +299,9 @@ public class Mount_Ebott {
                         act(opponent);
                         loop = false;
                         break;
-                    case "3": checkInventory(true);
-                        if (player.getInventory().size() < items || !currentWeapon.equals(player.getMyWeapon()) || !currentArmor.equals(player.getMyArmor())) {
+                    case "3":
+                        checkInventory(true);
+                        if (player.getInventory().size() != items || !currentWeapon.equals(player.getMyWeapon()) || !currentArmor.equals(player.getMyArmor())) {
                             loop = false;
                         }
                         break;
@@ -325,7 +325,7 @@ public class Mount_Ebott {
 
             opponent.attacks(player);
             if (player.isCharacterDead()) {
-                gameOver(savePlayer);
+                gameOver();
                 opponent = new Enemy(opponentTemplate);
             }
         }
@@ -380,7 +380,7 @@ public class Mount_Ebott {
             player.setGold(opponent.getGoldGain());
             System.out.println("You gained "+opponent.getExpGain()+" EXP and "+opponent.getGoldGain()+" gold.");
         } else {
-            player.setGold((opponent.getGold()/10)*6);
+            player.setGold((opponent.getGoldGain()/10)*6);
             System.out.println("You gained "+opponent.getGoldGain()+" gold.");
         }
     }
@@ -388,7 +388,7 @@ public class Mount_Ebott {
     // Called when player reaches zero health in battle() and exits the program if you give up or continues the battle from the beginning
     // if you choose to continue which is achieved by making a new instance of the enemy after this method and using a saved copy of player to
     // make a new player and overwrite the current one, so that all data will be the same as when player entered battle
-    public void gameOver(Character savePlayer){
+    public void gameOver(){
         System.out.println("""
                 ⠀⢀⣴⣾⣿⣿⣿⣷⣦⡄⠀⣴⣾⣿⣿⣿⣿⣶⣄⠀⠀
                 ⣰⣿⣿⣿⣿⣿⣿⣿⠋⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
@@ -405,7 +405,7 @@ public class Mount_Ebott {
             System.out.println("1. Continue"+"\n2. Give up");
             String choice = read.nextLine();
             if(choice.equals("1")) {
-                player = new Character(savePlayer);
+                player = new Player(savePlayer);
                 System.out.println("You have been brought back to the beginning of the battle.");
                 break;
             } else if(choice.equals("2")) {
