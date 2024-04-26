@@ -43,4 +43,8 @@ public abstract class Character {
     public int getAttack() {
         return attack;
     }
+
+    public void setHP(int hp) {
+        this.hp = hp;
+    }
 }

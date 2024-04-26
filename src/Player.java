@@ -80,7 +80,6 @@ public class Player extends Character{
         heal.gotUsed(this);
     }
 
-    @Override
     public void gettingHit(int damage){
         this.hp -= damage - this.defense/5;
     }

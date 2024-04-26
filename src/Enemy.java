@@ -2,16 +2,23 @@ import java.util.Random;
 import java.util.Scanner;
 
 // A subclass of Character, using both protected attributes from character and a multitude of its own attributes
-public class Enemy extends Character {
-    private String description;
-    private boolean spareable = false;
-    private int willingness;
-    private int expGain;
-    private int goldGain;
-    private String visibleName = "the monster";
+// It is also abstract and would have many subclasses where you only need to specify about 2-3 methods if this project were to continue
+public abstract class Enemy extends Character {
+    protected String description;
+    protected boolean spareable = false;
+    protected int willingness;
+    protected int expGain;
+    protected int goldGain;
+    protected String visibleName = "the monster";
+    protected String[] choices;
+    protected int[] correctChoices;
 
-    //Constructor
-    // potential "spawns" subclass of enemy
+    //Constructors
+    // Default constructor
+    public Enemy() {
+
+    }
+
     public Enemy(String name, int attack, int defense, int maxHp, int expGain, int goldGain, int willingness, String description) {
         this.name = name;
         this.attack = attack;
@@ -41,17 +48,15 @@ public class Enemy extends Character {
     // This method is on the enemies turn during battle() in Mount_Ebott, randomizes an attack unique between different monsters
     // but only including six different ways for player/user to counter/negate the incoming damage and then looking at the result with attackResult()
     public void attacks(Character player){
-        System.out.println(this.visibleName + " tries to attack " + player.getName());
+        System.out.println(this.getVisibleName() + " tries to attack " + player.getName());
         System.out.println();
         Random generator = new Random();
         Scanner read = new Scanner(System.in);
-        int correctChoice = 0;
-        int choice;
         int attackVariation = generator.nextInt(1,4);
+        int choice;
 
-        if (this.name.equals("Froggit")){
-            correctChoice = froggit(attackVariation);
-        }
+        //
+        int correctChoice = determineCorrectChoice(attackVariation);;
 
         while (true) {
             System.out.println("How do you want to avoid damage?");
@@ -72,27 +77,32 @@ public class Enemy extends Character {
         attackResult(choice, correctChoice, player);
     }
 
-    // The attacks the froggit enemy has specifically, might make subclasses of enemies for this but seems a bit overkill as this is
-    // designed to be very flexible to add new enemies which is why it was coded like this, it just takes up a tiny bit more space
-    // Parameter is a randomized number from attacks() and it returns the correct choice needed to negate damage from the attack
-    public int froggit(int attackVariation) {
+    public int determineCorrectChoice(int attackVariation) {
         int correctChoice = 0;
         switch (attackVariation) {
             case 1 -> {
-                System.out.println(this.visibleName + " sends out a bunch of big flies at you!");
-                correctChoice = 6;
+                System.out.println(this.getVisibleName() + this.getChoices()[0]);
+                correctChoice = this.getCorrectChoices()[0];
             }
             case 2 -> {
-                System.out.println(this.visibleName + " jumps at you!");
-                correctChoice = 2;
+                System.out.println(this.getVisibleName() + this.getChoices()[1]);
+                correctChoice = this.getCorrectChoices()[1];
             }
             case 3 -> {
-                System.out.println(this.visibleName + " shoots out his tongue!");
-                correctChoice = 4;
+                System.out.println(this.getVisibleName() + this.getChoices()[2]);
+                correctChoice = this.getCorrectChoices()[2];
             }
         }
         return correctChoice;
     }
+
+    // A method that sends back an int correctChoice in the attack method
+    // The method is implemented in subclasses and doesn't need to use @Override as the method is empty in this class
+
+    //public abstract int determineCorrectChoice(int attackVariation);
+
+    public abstract void actOptions();
+
 
     // Checks the users input and what the correct choice is from the randomized attack and prints different lines depending on
     // what the user picked and if that choice is wrong or correct, either doing nothing or making the player take damage
@@ -116,7 +126,7 @@ public class Enemy extends Character {
                 case 6 -> System.out.println("You try to swerve past the attack, but trip instead!");
             }
             System.out.println("You took damage!");
-            player.gettingHit(this.attack);
+            player.gettingHit(this.getAttack());
         }
     }
 
@@ -124,15 +134,15 @@ public class Enemy extends Character {
     // doesn't want to battle anymore and you can spare it
     public void willingnessChange(int difference) {
         this.willingness -= difference;
-        if (this.willingness == 0) {
+        if (this.willingness <= 0) {
             this.spareable = true;
             System.out.println("It looks like " + this.visibleName + " doesn't want to fight anymore!");
+            this.willingness = 0;
         }
     }
 
     // The method for the enemy taking damage from player during battle, which can also make the enemy not want
     // to fight anymore because it is too low and could die
-    @Override
     public void gettingHit(int damage){
         this.hp -= damage;
         if (this.hp <= (this.maxHp*0.3) && this.hp>0) {
@@ -167,7 +177,19 @@ public class Enemy extends Character {
         return visibleName;
     }
 
+    public String[] getChoices() {
+        return this.choices;
+    }
+
+    public int[] getCorrectChoices() {
+        return this.correctChoices;
+    }
+
     public void setSpareable(boolean spareable) {
         this.spareable = spareable;
+    }
+
+    public void setVisibleName(String visibleName) {
+        this.visibleName = visibleName;
     }
 }

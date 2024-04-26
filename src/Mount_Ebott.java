@@ -63,7 +63,7 @@ public class Mount_Ebott {
     // switch statement, either calling method checkInventory, checkStatsEquipment or continuing and calls method battle
     // The program is supposed to continue from here if more content gets added in the future
     public void ruins(){
-        Enemy froggit = new Enemy("Froggit", 4, 4, 20, 10, 6, 2, "Froggit - Atk 4 Def 4"+
+        Enemy froggit = new Froggit("Froggit", 4, 4, 20, 10, 6, 2, "Froggit - Atk 4 Def 4"+
                 "\nA weird frog creature... it talks?!");
         enemies.add(froggit);
         String choice;
@@ -256,7 +256,12 @@ public class Mount_Ebott {
     public void battle(Enemy opponentTemplate) {
         boolean loop;
         savePlayer = new Player(player);
-        Enemy opponent = new Enemy(opponentTemplate);
+        //Enemy opponent = new Enemy(opponentTemplate);
+        Enemy opponent = null;
+        if (opponentTemplate instanceof Froggit) {
+            opponent = new Froggit(opponentTemplate);
+        }
+
         String[] choices = new String[]{"Fight", "Act", "View inventory", "Mercy"};
         String choice;
         int missChance;
@@ -266,6 +271,8 @@ public class Mount_Ebott {
         double enemyHPProcent;
         double enemyHP;
         double enemyMaxHP = opponent.getMaxHp();
+
+        int willingness = opponent.getWillingness();
 
         label:
         while (true) {
@@ -296,7 +303,8 @@ public class Mount_Ebott {
                         loop = false;
                         break;
                     case "2":
-                        act(opponent);
+                        System.out.println("What do you want to do?");
+                        opponent.actOptions();
                         loop = false;
                         break;
                     case "3":
@@ -326,18 +334,11 @@ public class Mount_Ebott {
             opponent.attacks(player);
             if (player.isCharacterDead()) {
                 gameOver();
-                opponent = new Enemy(opponentTemplate);
+                opponent.setHP(opponent.getMaxHp());
+                opponent.setSpareable(false);
+                opponent.willingnessChange(-willingness);
+                opponent.setVisibleName("the monster");
             }
-        }
-    }
-
-    // this method will call the specific method for specific enemies as you will be able to interact with each type of enemies uniquely
-    // Currently only the froggit method is called here and therefore the player parameter isn't being used, in the future it could
-    public void act(Enemy opponent) {
-
-        System.out.println("What do you want to do?");
-        if (opponent.getName().equals("Froggit")) {
-            froggit(opponent);
         }
     }
 
@@ -356,7 +357,7 @@ public class Mount_Ebott {
                     wonBattle(opponent);
                     over = true;
                 } else {
-                System.out.println(opponent.getName() + " isn't spareable right now!");
+                System.out.println(opponent.getVisibleName() + " isn't spareable right now!");
                 }
                 break;
             case "2":
@@ -420,33 +421,7 @@ public class Mount_Ebott {
         }
     }
 
-    // This method lets you choose an action when choosing act against the enemy froggit which either lets you see froggits stats and
-    // description or call a class method to change its willingness which affects its spareability
-    public void froggit(Enemy opponent) {
-        String choice;
-        String[] choices = new String[] {"Check " + opponent.getVisibleName(), "Compliment " + opponent.getVisibleName(), "Threaten " + opponent.getVisibleName()};
-
-        label:
-        while(true) {
-            choice = menu(choices);
-            switch (choice) {
-                case "1":
-                    System.out.println(opponent.getDescription());
-                    break label;
-                case "2":
-                    System.out.println(opponent.getVisibleName() + " didn't understand you, but was flattered anyway");
-                    opponent.willingnessChange(1);
-                    break label;
-                case "3":
-                    System.out.println(opponent.getVisibleName() + " didn't understand you, but was scared anyway");
-                    opponent.willingnessChange(1);
-                    break label;
-                default:
-                    System.out.println("You need to write a number corresponding to the choices!");
-                    break;
-            }
-        }
-    }
+    //TODO: change names for methods so they are like verbs, or something that is run, and change certain parameter and variable names to be different than class names
 
     //TODO: add a mimic battle, copies players stats and name with three question marks
 
