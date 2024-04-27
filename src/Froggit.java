@@ -1,7 +1,11 @@
 import java.util.Scanner;
 
+// A subclass of the abstract class Enemy, so that the Enemy class and main code
+// doesn't get cluttered with methods for each and every enemy type
+// Makes it possible for certain enemy types to drop specific items if a few changes are added
 public class Froggit extends Enemy{
 
+    // Constructor
     public Froggit(String name, int attack, int defense, int maxHp, int expGain, int goldGain, int willingness, String description) {
         super(name, attack, defense, maxHp, expGain, goldGain, willingness, description);
         this.choices = new String[]{" sends out a bunch of big flies at you!", " jumps at you!", " shoots out his tongue!"};
@@ -9,6 +13,7 @@ public class Froggit extends Enemy{
         System.out.println(this.choices[0] + this.choices[1] + this.choices[2]);
     }
 
+    // Another constructor to make copy of Froggit
     public Froggit(Enemy enemy) {
         super(enemy);
         this.choices = new String[]{" sends out a bunch of big flies at you!", " jumps at you!", " shoots out his tongue!"};
@@ -16,27 +21,6 @@ public class Froggit extends Enemy{
     }
 
     // Methods
-    // Parameter is a randomized number from attacks() in Enemy and it returns the correct choice needed to
-    // negate damage the player takes from the attack in attackResult() in Enemy
-    /*
-    public int determineCorrectChoice(int attackVariation) {
-        int correctChoice = 0;
-        switch (attackVariation) {
-            case 1 -> {
-                System.out.println(this.visibleName + " sends out a bunch of big flies at you!");
-                correctChoice = 6;
-            }
-            case 2 -> {
-                System.out.println(this.visibleName + " jumps at you!");
-                correctChoice = 2;
-            }
-            case 3 -> {
-                System.out.println(this.visibleName + " shoots out his tongue!");
-                correctChoice = 4;
-            }
-        }
-        return correctChoice;
-    }*/
 
     // This method lets you choose an action when choosing act against the enemy froggit in the Battle method,
     // which either lets you see froggits stats and description

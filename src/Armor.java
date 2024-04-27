@@ -1,4 +1,4 @@
-// A subclass of item, increases the defense of a Character instance that saves it in its attributes, might make specific
+// A subclass of item, increases the defense of a player instance that saves it in its attributes, might make specific
 // methods for certain armors that might have special effects
 public class Armor extends Item{
     // Attributes
@@ -10,12 +10,13 @@ public class Armor extends Item{
         this.protection = protection;
     }
 
-    public Armor(Armor armor) {
-        super(armor.getName(), armor.getDescription());
-        this.protection = armor.getProtection();
+    // Constructor to make a copy of an armor
+    public Armor(Armor originalArmor) {
+        super(originalArmor.getName(), originalArmor.getDescription());
+        this.protection = originalArmor.getProtection();
     }
 
-    // getter
+    // getters
     public int getProtection() {
         return protection;
     }

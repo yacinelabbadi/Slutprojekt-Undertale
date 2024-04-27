@@ -12,19 +12,19 @@ public class Healing extends Item{
     }
 
     // Another constructor using another Healing item, essentially making a copy
-    public Healing(Healing healing) {
-        super(healing.getName(), healing.getDescription());
-        this.heal = healing.getHeal();
-        this.uses = healing.getUses();
+    public Healing(Healing healingItem) {
+        super(healingItem.getName(), healingItem.getDescription());
+        this.heal = healingItem.getHeal();
+        this.uses = healingItem.getUses();
     }
 
     // Methods
-    // called from the player class whenever the use a healing item from checkInventory, checks uses and makes the player
-    // remove the item from its arraylist if the uses reaches 0
-    public void gotUsed(Player player) {
+    // called from the player class whenever they use a healing item from checkInventory, checks uses and
+    // tells the player to remove the item from its arraylist if the uses reaches 0
+    public void gotUsed(Player playerCharacter) {
         this.uses--;
         if (this.uses == 0){
-            player.throwAway(this);
+            playerCharacter.throwAway(this);
         }
     }
 

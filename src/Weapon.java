@@ -10,13 +10,13 @@ public class Weapon extends Item{
         this.damage = damage;
     }
 
-    public Weapon(Weapon weapon) {
-        super(weapon.getName(), weapon.getDescription());
-        this.damage = weapon.getDamage();
+    // Constructor to make a copy of a weapon
+    public Weapon(Weapon originalWeapon) {
+        super(originalWeapon.getName(), originalWeapon.getDescription());
+        this.damage = originalWeapon.getDamage();
     }
 
-    // Getters and setters
-
+    // Getters
     public int getDamage() {
         return damage;
     }

@@ -12,14 +12,11 @@ public class Item {
         this.description = description;
     }
 
-    public Item(Item item) {
-        this.name = item.getName();
-        this.description = item.getDescription();
+    // Constructor to make a copy of an Item
+    public Item(Item originalItem) {
+        this.name = originalItem.getName();
+        this.description = originalItem.getDescription();
     }
-
-    // Methods
-    // Idea, useItem method and instanceof to call respective methods, healCharacter, equipItem etc. items don't handle that? might come back to this
-    // to be able to have custom item effects without making new classes, stick instant win dog fight?
 
     // Getters and setters
     public String getName() {
