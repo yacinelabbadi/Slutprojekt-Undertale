@@ -10,7 +10,6 @@ public class Froggit extends Enemy{
         super(name, attack, defense, maxHp, expGain, goldGain, willingness, description);
         this.choices = new String[]{" sends out a bunch of big flies at you!", " jumps at you!", " shoots out his tongue!"};
         this.correctChoices = new int[]{6,2,4};
-        System.out.println(this.choices[0] + this.choices[1] + this.choices[2]);
     }
 
     // Another constructor to make copy of Froggit

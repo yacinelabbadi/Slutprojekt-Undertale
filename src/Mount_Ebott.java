@@ -127,74 +127,92 @@ public class Mount_Ebott {
     // This method uses loops and if-else statements to let the user see the arraylist of items
     // the playerCharacter object has stored and choose an item to either equip or use depending on
     // if the item is an instance of Weapon/Armor or Healing or lets the user throw away the item
+    // Now divided up in a few methods
     public void checkInventory(boolean inBattle) {
         boolean loop = true;
-        boolean itemFound = false;
         int answer;
 
-        String choice;
         while(loop) {
-            System.out.println();
-            System.out.println("Gold: " + playerCharacter.getGold());
-            for (int i = 0; i < playerCharacter.getInventory().size(); i++) {
-                System.out.print(playerCharacter.getInventory().get(i).getName()+"  ");
-                if (i == 3) {
-                    System.out.println();
-                }
-            }
+
             if (playerCharacter.getInventory().isEmpty()) {
                 System.out.println("You have no items");
                 break;
+            } else {
+                printInventory();
             }
+
             System.out.println("\nDo you want check one of the items? y/n");
             answer = yesOrNoQuestion();
-            if (answer == 1) {
-                System.out.println("Input the name of the item you want to check: ");
-                choice = read.nextLine();
-                for (Item item : playerCharacter.getInventory()) {
-                    if (choice.equalsIgnoreCase(item.getName())) {
-                        itemFound = true;
-                        System.out.println(item.getDescription());
-                        if (item instanceof Weapon || item instanceof Armor) {
-                            System.out.println("Do you want to equip it? y/n");
-                        } else {
-                            System.out.println("Do you want to use it? y/n");
-                        }
-                        answer = yesOrNoQuestion();
-                        if (answer == 1) {
-                            if (inBattle) {
-                                loop = false;
-                            }
 
-                            if (item instanceof Weapon || item instanceof Armor) {
-                                playerCharacter.equipItem(item);
-                                break;
-                            } else if (item instanceof Healing healingItem) {
-                                playerCharacter.useHealing(healingItem);
-                                break;
-                            }
-                        }
-                        else {
-                            System.out.println("Do you want to throw it away? y/n");
-                            answer = yesOrNoQuestion();
-                            if (answer == 1) {
-                                playerCharacter.throwAway(item);
-                            }
-                        }
-                        break;
-                    }
-                }
-                if (!itemFound) {
-                    System.out.println("Item was not found in inventory.\nExit inventory? y/n");
-                    answer = yesOrNoQuestion();
-                    if (answer == 1) {
-                        loop = false;
-                    }
-                }
-            } else if (answer == 2) {
-                loop = false;
+            loop = chooseItem(answer, inBattle);
+        }
+    }
+
+    // Prints out the players gold and inventory
+    public void printInventory() {
+        System.out.println();
+        System.out.println("Gold: " + playerCharacter.getGold());
+
+        for (int i = 0; i < playerCharacter.getInventory().size(); i++) {
+            System.out.print(playerCharacter.getInventory().get(i).getName()+"  ");
+            if (i == 3) {
+                System.out.println();
             }
         }
+    }
+
+    public boolean chooseItem(int answer, boolean inBattle) {
+        String choice;
+        boolean itemFound = false;
+        boolean loop = true;
+
+        if (answer == 1) {
+            System.out.println("Input the name of the item you want to check: ");
+            choice = read.nextLine();
+            for (Item item : playerCharacter.getInventory()) {
+                if (choice.equalsIgnoreCase(item.getName())) {
+                    itemFound = true;
+                    System.out.println(item.getDescription());
+                    if (item instanceof Weapon || item instanceof Armor) {
+                        System.out.println("Do you want to equip it? y/n");
+                    } else {
+                        System.out.println("Do you want to use it? y/n");
+                    }
+                    answer = yesOrNoQuestion();
+                    if (answer == 1) {
+                        if (inBattle) {
+                            loop = false;
+                        }
+
+                        if (item instanceof Weapon || item instanceof Armor) {
+                            playerCharacter.equipItem(item);
+                            break;
+                        } else if (item instanceof Healing healingItem) {
+                            playerCharacter.useHealing(healingItem);
+                            break;
+                        }
+                    }
+                    else {
+                        System.out.println("Do you want to throw it away? y/n");
+                        answer = yesOrNoQuestion();
+                        if (answer == 1) {
+                            playerCharacter.throwAway(item);
+                        }
+                    }
+                    break;
+                }
+            }
+            if (!itemFound) {
+                System.out.println("Item was not found in inventory.\nExit inventory? y/n");
+                answer = yesOrNoQuestion();
+                if (answer == 1) {
+                    loop = false;
+                }
+            }
+        } else if (answer == 2) {
+            loop = false;
+        }
+        return loop;
     }
 
     // Prints out a majority of the characters saved attributes to show the user the characters "stats" and equipment

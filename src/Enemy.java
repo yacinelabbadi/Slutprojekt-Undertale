@@ -56,7 +56,7 @@ public abstract class Enemy extends Character {
         int attackVariation = generator.nextInt(1,4);
         int choice;
 
-        int correctChoice = determineCorrectChoice(attackVariation);;
+        int correctChoice = determineCorrectChoice(attackVariation);
 
         while (true) {
             System.out.println("How do you want to avoid damage?");
