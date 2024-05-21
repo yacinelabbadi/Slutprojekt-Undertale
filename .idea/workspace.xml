@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Har gjort några små justeringar och fixat alla kommentarer, projektet är nu klar.">
+    <list default="true" id="c55dc45d-701c-4db3-9e34-2c95f597c33c" name="Changes" comment="Det fanns en debug print line som jag tog bort frång froggit, gjort några metoder för att minska checkInventory.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Froggit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Froggit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mount_Ebott.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mount_Ebott.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,6 +132,8 @@
       <workItem from="1716136186335" duration="11000" />
       <workItem from="1716136257173" duration="1333000" />
       <workItem from="1716211057001" duration="1439000" />
+      <workItem from="1716212727750" duration="5044000" />
+      <workItem from="1716310118963" duration="3438000" />
     </task>
     <task id="LOCAL-00001" summary="Skrev en förklaring av spelet i början för användaren, gjorde en ny Metod &quot;Menu&quot;, gjorde två nya klasser och attribut och konstruktor för en av dem.">
       <option name="closed" value="true" />
@@ -262,11 +263,30 @@
       <option name="project" value="LOCAL" />
       <updated>1714245333880</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Det fanns en debug print line som jag tog bort frång froggit, gjort några metoder för att minska checkInventory.">
+      <option name="closed" value="true" />
+      <created>1716230991431</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1716230991431</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Börjat med projektet typ, skapade några klasser och gjort attribut för Character" />
@@ -285,6 +305,7 @@
     <MESSAGE value="Jag har flyttat allt som behövs från Character till player och gjort character till en abstract klass, och sedan gjort några ändringar och fixat små fel generellt" />
     <MESSAGE value="Håller på med att fixa Enemy subklassen Froggit och fixa koden att hantera de nya ändringarna då Enemy är abstract nu. En konsekvens är att jag tog bort act och froggit metoden från Mount_Ebott eftersom jag act inte behövs längre då jag kan kalla actOptions metoden från vilke av Enemy subklasserna som helst." />
     <MESSAGE value="Har gjort några små justeringar och fixat alla kommentarer, projektet är nu klar." />
-    <option name="LAST_COMMIT_MESSAGE" value="Har gjort några små justeringar och fixat alla kommentarer, projektet är nu klar." />
+    <MESSAGE value="Det fanns en debug print line som jag tog bort frång froggit, gjort några metoder för att minska checkInventory." />
+    <option name="LAST_COMMIT_MESSAGE" value="Det fanns en debug print line som jag tog bort frång froggit, gjort några metoder för att minska checkInventory." />
   </component>
 </project>

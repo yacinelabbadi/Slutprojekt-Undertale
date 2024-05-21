@@ -133,7 +133,6 @@ public class Mount_Ebott {
         int answer;
 
         while(loop) {
-
             if (playerCharacter.getInventory().isEmpty()) {
                 System.out.println("You have no items");
                 break;
@@ -148,7 +147,7 @@ public class Mount_Ebott {
         }
     }
 
-    // Prints out the players gold and inventory
+    // Prints out the players gold and inventory, called in checkInventory
     public void printInventory() {
         System.out.println();
         System.out.println("Gold: " + playerCharacter.getGold());
@@ -161,6 +160,8 @@ public class Mount_Ebott {
         }
     }
 
+    // Lets user check an item and calls method useItem,
+    // returns boolean for the while loop in checkInventory (obviously called in checkInventory)
     public boolean chooseItem(int answer, boolean inBattle) {
         String choice;
         boolean itemFound = false;
@@ -173,32 +174,7 @@ public class Mount_Ebott {
                 if (choice.equalsIgnoreCase(item.getName())) {
                     itemFound = true;
                     System.out.println(item.getDescription());
-                    if (item instanceof Weapon || item instanceof Armor) {
-                        System.out.println("Do you want to equip it? y/n");
-                    } else {
-                        System.out.println("Do you want to use it? y/n");
-                    }
-                    answer = yesOrNoQuestion();
-                    if (answer == 1) {
-                        if (inBattle) {
-                            loop = false;
-                        }
-
-                        if (item instanceof Weapon || item instanceof Armor) {
-                            playerCharacter.equipItem(item);
-                            break;
-                        } else if (item instanceof Healing healingItem) {
-                            playerCharacter.useHealing(healingItem);
-                            break;
-                        }
-                    }
-                    else {
-                        System.out.println("Do you want to throw it away? y/n");
-                        answer = yesOrNoQuestion();
-                        if (answer == 1) {
-                            playerCharacter.throwAway(item);
-                        }
-                    }
+                    loop = useItem(item, inBattle);
                     break;
                 }
             }
@@ -211,6 +187,39 @@ public class Mount_Ebott {
             }
         } else if (answer == 2) {
             loop = false;
+        }
+        return loop;
+    }
+
+    // Method that lets user either use an item or equip weapon/armor or throw it away
+    // Returns boolean "loop" to chooseItem which in turn returns it to checkInventory
+    public boolean useItem(Item item, boolean inBattle) {
+        boolean loop = true;
+        int answer;
+
+        if (item instanceof Weapon || item instanceof Armor) {
+            System.out.println("Do you want to equip it? y/n");
+        } else {
+            System.out.println("Do you want to use it? y/n");
+        }
+        answer = yesOrNoQuestion();
+        if (answer == 1) {
+            if (inBattle) {
+                loop = false;
+            }
+
+            if (item instanceof Weapon || item instanceof Armor) {
+                playerCharacter.equipItem(item);
+            } else if (item instanceof Healing healingItem) {
+                playerCharacter.useHealing(healingItem);
+            }
+        }
+        else {
+            System.out.println("Do you want to throw it away? y/n");
+            answer = yesOrNoQuestion();
+            if (answer == 1) {
+                playerCharacter.throwAway(item);
+            }
         }
         return loop;
     }
@@ -270,7 +279,6 @@ public class Mount_Ebott {
 
         String[] choices = new String[]{"Fight", "Act", "View inventory", "Mercy"};
         String choice;
-        int missChance;
         int items;
         Weapon currentWeapon;
         Armor currentArmor;
@@ -299,13 +307,7 @@ public class Mount_Ebott {
 
                 switch (choice) {
                     case "1":
-                        missChance = generator.nextInt(1,11);
-                        if (missChance==1){
-                            System.out.println("You missed!");
-                        } else {
-                            System.out.println("You attacked " + opponent.getVisibleName());
-                            opponent.gettingHit(playerCharacter.getAttack());
-                        }
+                        attackMonster(opponent);
                         loop = false;
                         break;
                     case "2":
@@ -343,6 +345,18 @@ public class Mount_Ebott {
                 opponent.willingnessChange(-willingness);
                 opponent.setVisibleName("the monster");
             }
+        }
+    }
+
+
+
+    public void attackMonster(Enemy opponent) {
+        int missChance = generator.nextInt(1,11);
+        if (missChance==1){
+            System.out.println("You missed!");
+        } else {
+            System.out.println("You attacked " + opponent.getVisibleName());
+            opponent.gettingHit(playerCharacter.getAttack());
         }
     }
 
